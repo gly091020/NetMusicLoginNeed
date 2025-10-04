@@ -1,5 +1,5 @@
 {
   "text.net_music_login_need.not_login": "Login feature is not yet complete, please use cookie string to log in",
-  "config.net_music_login_need.title": "Settings",
+  "config.net_music_login_need.title": "NetMusic: LoginNeed Settings",
   "text.net_music_login_need.login": "Login"
 }
