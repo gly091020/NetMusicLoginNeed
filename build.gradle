@@ -136,9 +136,9 @@ repositories {
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+     flatDir {
+         dir 'libs'
+     }
     maven {
         url "https://cursemaven.com"
         content {
@@ -172,9 +172,9 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:net-music-978569:6659790")
+//    implementation fg.deobf("curse.maven:net-music-978569:6838602")
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
-
+    implementation files("libs/netmusic-1.1.8-forge+mc1.20.1.jar")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

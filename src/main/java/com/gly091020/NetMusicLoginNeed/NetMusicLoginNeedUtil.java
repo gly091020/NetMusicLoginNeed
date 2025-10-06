@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class NetMusicLoginNeedUtil {
     private static final Gson GSON = new Gson();
-    private static final String BASE_URL = "https://music.163.com/api/song/enhance/player/url/v1?encodeType=mp3&ids=[%s]&level=hires";
+    private static final String BASE_URL = "https://music.163.com/api/song/enhance/player/url/v1?encodeType=mp3&ids=[%s]&level=standard";
 
     @SuppressWarnings("all")
     public static String getSongUrl(String json) throws Exception{
