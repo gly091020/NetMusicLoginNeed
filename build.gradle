@@ -173,8 +173,8 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
 //    implementation fg.deobf("curse.maven:net-music-978569:6838602")
-    implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
-    implementation files("libs/netmusic-1.1.8-forge+mc1.20.1.jar")
+    implementation fg.deobf("curse.maven:cloth-config-348521:5729096")
+    implementation fg.deobf("curse.maven:net-music-978569:5309981")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

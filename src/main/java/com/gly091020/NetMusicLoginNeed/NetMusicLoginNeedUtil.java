@@ -2,7 +2,6 @@ package com.gly091020.NetMusicLoginNeed;
 
 import com.github.tartaricacid.netmusic.api.NetWorker;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -15,7 +14,7 @@ public class NetMusicLoginNeedUtil {
 
     @SuppressWarnings("all")
     public static String getSongUrl(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
+        var j = GSON.fromJson(json, Object.class);
         return (String)((Map<String, Object>)((List<Object>)((Map<String, Object>)j).get("data")).get(0)).get("url");
     }
 
@@ -32,13 +31,13 @@ public class NetMusicLoginNeedUtil {
 
     @SuppressWarnings("all")
     public static String pasteKey(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
+        var j = GSON.fromJson(json, Object.class);
         return (String) ((Map<String, Object>)j).get("unikey");
     }
 
     @SuppressWarnings("all")
     public static int pasteCode(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
+        var j = GSON.fromJson(json, Object.class);
         return ((Double)((Map<String, Object>)j).get("code")).intValue();
     }
 

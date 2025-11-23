@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 @Mixin(MusicPlayManager.class)
 public abstract class GetMusicMixin {
-    @Shadow(remap = false)
+    @Shadow
     private static void playMusic(String url, String songName, Function<URL, SoundInstance> sound) {
     }
 
