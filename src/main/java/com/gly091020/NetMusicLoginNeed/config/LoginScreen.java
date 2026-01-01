@@ -39,7 +39,7 @@ public class LoginScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics graphics, int p_281550_, int p_282878_, float p_282465_) {
-        renderBackground(graphics);
+        renderBackground(graphics, p_281550_, p_282878_, p_282465_);
         super.render(graphics, p_281550_, p_282878_, p_282465_);
         graphics.drawCenteredString(Minecraft.getInstance().font, String.format("http://music.163.com/api/login/qrcode/client/login?type=1&key=%s", uniKey), width / 2, height / 2, 0XFFFFFFFF);
     }
