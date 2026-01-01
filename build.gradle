@@ -41,8 +41,12 @@ dependencies {
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
     modImplementation "dev.isxander:yet-another-config-lib:${yacl_version}"
 
-    // NetMusic main mod (local copy; Modrinth Maven lacks this version)
-    modImplementation files("run/mods/netmusic-1.2.1-fabric+mc1.21.1.jar")
+    // NetMusic (local for development, excluded from jar - users install it separately)
+    // CI builds will skip this dependency if the file doesn't exist
+    def netMusicJar = file("run/mods/netmusic-1.2.1-fabric+mc1.21.1.jar")
+    if (netMusicJar.exists()) {
+        modCompileOnly files(netMusicJar)
+    }
 }
 
 def resourceProps = [
