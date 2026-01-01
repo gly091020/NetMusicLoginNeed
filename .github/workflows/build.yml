@@ -28,6 +28,12 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Download NetMusic dependency
+        run: |
+          mkdir -p run/mods
+          curl -L -o run/mods/netmusic-1.2.1-fabric+mc1.21.1.jar \
+            https://github.com/TartaricAcid/NetMusic/releases/download/1.2.1-fabric%2Bmc1.21.1/netmusic-1.2.1-fabric+mc1.21.1.jar
+
       - name: Build and test with Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
