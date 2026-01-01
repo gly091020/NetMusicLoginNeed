@@ -52,12 +52,26 @@
         "command": ".\\gradlew.bat"
       },
       "args": ["runClient"],
+      "isBackground": true,
       "options": {
         "env": {
-          "JAVA_TOOL_OPTIONS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005"
+          "JAVA_HOME": "C:/Users/Public/.jdks/jdk-21.0.8",
+          "PATH": "C:/Users/Public/.jdks/jdk-21.0.8/bin;${env:PATH}"
         }
       },
-      "problemMatcher": ["$gradle"],
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": {
+            "regexp": ".*"
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Listening for transport dt_socket at address: 5005",
+            "endsPattern": "Disconnected from the target VM"
+          }
+        }
+      ],
       "presentation": {
         "reveal": "always",
         "panel": "shared"
