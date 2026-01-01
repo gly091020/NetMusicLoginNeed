@@ -43,6 +43,11 @@ dependencies {
     compileOnly "net.minecraftforge:forge:${minecraft_version}-52.0.26"
 
     modImplementation "curse.maven:net-music-978569:6659790"
+
+    constraints {
+        implementation("org.lz4:lz4-java:1.8.1")
+        implementation("io.netty:netty-handler:4.1.118.Final")
+    }
 }
 
 def resourceProps = [
