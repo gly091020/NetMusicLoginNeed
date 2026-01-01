@@ -9,6 +9,7 @@
   "environment": "*",
   "entrypoints": {
     "main": ["com.gly091020.NetMusicLoginNeed.NetMusicLoginNeed"],
+    "client": ["com.gly091020.NetMusicLoginNeed.NetMusicLoginNeedClient"],
     "modmenu": ["com.gly091020.NetMusicLoginNeed.config.ModMenuIntegration"]
   },
   "mixins": [

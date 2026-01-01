@@ -8,7 +8,8 @@
     "AlwaysCanPlayVIPMixin"
   ],
   "client": [
-    "GetMusicMixin"
+    "GetMusicMixin",
+    "MusicToClientMessageMixin"
   ],
   "injectors": {
     "defaultRequire": 1
