@@ -14,10 +14,10 @@ public class NetMusicLoginNeedUtil {
     private static final Gson GSON = new Gson();
         private static final String BASE_URL = "https://music.163.com/api/song/enhance/player/url/v1?encodeType=mp3&ids=[%s]&level=%s";
         private static final List<String> LEVELS = Arrays.asList(
-            "hires",    // highest; may require VIP
-            "exhigh",
-            "higher",
-            "standard"
+            // 只使用 MP3 格式，跳过 FLAC，因为可能不被支持
+            "exhigh",   // 320kbps MP3
+            "higher",   // 192kbps MP3
+            "standard"  // 128kbps MP3
         );
 
     @SuppressWarnings("all")
@@ -51,8 +51,12 @@ public class NetMusicLoginNeedUtil {
 
     @Nullable
     public static String pasteVIPUrl(String oldURL){
-        if(NetMusicLoginNeed.config == null || NetMusicLoginNeed.config.cookie.isEmpty()) {
-            NetMusicLoginNeed.LOGGER.warn("Cookie not set, skip replace for {}", oldURL);
+        String cookie = NetMusicLoginNeed.runtimeCookie;
+        if (cookie == null || cookie.isEmpty()) {
+            cookie = (NetMusicLoginNeed.config != null) ? NetMusicLoginNeed.config.cookie : "";
+        }
+        if(cookie == null || cookie.isEmpty()) {
+            NetMusicLoginNeed.LOGGER.warn("Cookie not set (client), skip replace for {}", oldURL);
             return null;
         }
         Map<String, String> data = new HashMap<>();
@@ -63,9 +67,21 @@ public class NetMusicLoginNeedUtil {
             NetMusicLoginNeed.LOGGER.warn("Fail parse id from url {}", oldURL);
             return null;
         }
-        if(!NetMusicLoginNeed.config.cookie.isEmpty()){
-            data.put("cookie", NetMusicLoginNeed.config.cookie);
+        return pasteVIPUrlById(id);
+    }
+    
+    @Nullable
+    public static String pasteVIPUrlById(long id){
+        String cookie = NetMusicLoginNeed.runtimeCookie;
+        if (cookie == null || cookie.isEmpty()) {
+            cookie = (NetMusicLoginNeed.config != null) ? NetMusicLoginNeed.config.cookie : "";
         }
+        if(cookie == null || cookie.isEmpty()) {
+            NetMusicLoginNeed.LOGGER.warn("Cookie not set (client), skip VIP request for id {}", id);
+            return null;
+        }
+        Map<String, String> data = new HashMap<>();
+        data.put("cookie", cookie);
         try {
             for (var level : LEVELS) {
                 var json = NetWorker.get(String.format(BASE_URL, id, level), data);
