@@ -44,7 +44,9 @@ public class NetMusicLoginNeedUtil {
 
     @Nullable
     public static String pasteVIPUrl(String oldURL){
-        if(NetMusicLoginNeed.config.cookie.isEmpty())return null;
+        if(NetMusicLoginNeed.config == null || NetMusicLoginNeed.config.cookie.isEmpty()) {
+            return null;
+        }
         Map<String, String> data = new HashMap<>();
         long id;
         try{

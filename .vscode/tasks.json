@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "gradle: build",
+      "type": "shell",
+      "command": "./gradlew",
+      "windows": {
+        "command": ".\\gradlew.bat"
+      },
+      "args": ["build"],
+      "group": "build",
+      "problemMatcher": ["$gradle"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "gradle: test",
+      "type": "shell",
+      "command": "./gradlew",
+      "windows": {
+        "command": ".\\gradlew.bat"
+      },
+      "args": ["test"],
+      "problemMatcher": ["$gradle"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "gradle: runClient",
+      "type": "shell",
+      "command": "./gradlew",
+      "windows": {
+        "command": ".\\gradlew.bat"
+      },
+      "args": ["runClient"],
+      "problemMatcher": ["$gradle"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "gradle: runClient (debug)",
+      "type": "shell",
+      "command": "./gradlew",
+      "windows": {
+        "command": ".\\gradlew.bat"
+      },
+      "args": ["runClient"],
+      "options": {
+        "env": {
+          "JAVA_TOOL_OPTIONS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005"
+        }
+      },
+      "problemMatcher": ["$gradle"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

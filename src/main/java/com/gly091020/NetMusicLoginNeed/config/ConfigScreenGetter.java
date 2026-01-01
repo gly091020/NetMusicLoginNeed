@@ -6,7 +6,7 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigScreenGetter {
     public static Screen get(Screen parent){
@@ -22,7 +22,7 @@ public class ConfigScreenGetter {
         var button = new ButtonEntry(Component.translatable("text.net_music_login_need.login"), button1 ->
                 Minecraft.getInstance().setScreen(new LoginScreen(Minecraft.getInstance().screen)));
 
-        button.isEnable(!FMLEnvironment.production);
+        button.isEnable(FabricLoader.getInstance().isDevelopmentEnvironment());
         button.setTooltip(Component.translatable("text.net_music_login_need.not_login"));
 
         category.addEntry(button);
