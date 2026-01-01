@@ -29,6 +29,22 @@ repositories {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'io.netty:netty-buffer:4.1.118.Final'
+        force 'io.netty:netty-codec:4.1.118.Final'
+        force 'io.netty:netty-codec-http:4.1.118.Final'
+        force 'io.netty:netty-common:4.1.118.Final'
+        force 'io.netty:netty-handler:4.1.118.Final'
+        force 'io.netty:netty-handler-proxy:4.1.118.Final'
+        force 'io.netty:netty-resolver:4.1.118.Final'
+        force 'io.netty:netty-transport:4.1.118.Final'
+        force 'io.netty:netty-transport-classes-epoll:4.1.118.Final'
+        force 'at.yawk.lz4:lz4-java:1.10.1'
+        force 'org.lz4:lz4-java:1.10.1'
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
@@ -45,7 +61,7 @@ dependencies {
     modImplementation "curse.maven:net-music-978569:6659790"
 
     constraints {
-        implementation("org.lz4:lz4-java:1.8.1")
+        implementation("at.yawk.lz4:lz4-java:1.10.1")
         implementation("io.netty:netty-handler:4.1.118.Final")
     }
 }
