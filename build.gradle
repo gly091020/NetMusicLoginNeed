@@ -46,6 +46,8 @@ configurations.all {
             substitute module('org.lz4:lz4-java') using module('at.yawk.lz4:lz4-java:1.10.1')
         }
     }
+
+    exclude group: 'org.lz4', module: 'lz4-java'
 }
 
 dependencies {
@@ -62,6 +64,10 @@ dependencies {
     compileOnly "net.minecraftforge:forge:${minecraft_version}-52.0.26"
 
     modImplementation "curse.maven:net-music-978569:6659790"
+
+    // Explicitly add safe versions for vulnerable transitive dependencies
+    compileOnly "at.yawk.lz4:lz4-java:1.10.1"
+    compileOnly "io.netty:netty-handler:4.1.118.Final"
 
     constraints {
         implementation("at.yawk.lz4:lz4-java:1.10.1")
