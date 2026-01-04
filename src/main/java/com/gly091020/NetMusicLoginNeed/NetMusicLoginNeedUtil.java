@@ -2,7 +2,9 @@ package com.gly091020.NetMusicLoginNeed;
 
 import com.github.tartaricacid.netmusic.api.NetWorker;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -20,10 +22,15 @@ public class NetMusicLoginNeedUtil {
             "standard"  // 128kbps MP3
         );
 
-    @SuppressWarnings("all")
     public static String getSongUrl(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
-        return (String)((Map<String, Object>)((List<Object>)((Map<String, Object>)j).get("data")).get(0)).get("url");
+        JsonElement el = JsonParser.parseString(json);
+        if (!el.isJsonObject()) return null;
+        JsonObject obj = el.getAsJsonObject();
+        var dataEl = obj.get("data");
+        if (dataEl == null || !dataEl.isJsonArray() || dataEl.getAsJsonArray().size() == 0) return null;
+        JsonObject first = dataEl.getAsJsonArray().get(0).getAsJsonObject();
+        var urlEl = first.get("url");
+        return urlEl != null && !urlEl.isJsonNull() ? urlEl.getAsString() : null;
     }
 
     public static long pasteIdFromUrl(String s) throws IllegalAccessException {
@@ -37,16 +44,21 @@ public class NetMusicLoginNeedUtil {
         return Long.parseLong(idPart.replace(".mp3", ""));
     }
 
-    @SuppressWarnings("all")
     public static String pasteKey(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
-        return (String) ((Map<String, Object>)j).get("unikey");
+        JsonElement el = JsonParser.parseString(json);
+        if (!el.isJsonObject()) return null;
+        JsonObject obj = el.getAsJsonObject();
+        var keyEl = obj.get("unikey");
+        return keyEl != null && !keyEl.isJsonNull() ? keyEl.getAsString() : null;
     }
 
-    @SuppressWarnings("all")
     public static int pasteCode(String json) throws Exception{
-        var j = GSON.fromJson(json, TypeToken.get(Object.class));
-        return ((Double)((Map<String, Object>)j).get("code")).intValue();
+        JsonElement el = JsonParser.parseString(json);
+        if (!el.isJsonObject()) return -1;
+        JsonObject obj = el.getAsJsonObject();
+        var codeEl = obj.get("code");
+        if (codeEl == null || codeEl.isJsonNull()) return -1;
+        return codeEl.getAsInt();
     }
 
     @Nullable

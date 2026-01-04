@@ -1,10 +1,8 @@
 package com.gly091020.NetMusicLoginNeed;
 
-import net.fabricmc.loader.api.FabricLoader;
-
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
+import java.net.URI;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,6 +14,8 @@ import java.util.HexFormat;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+
+import net.fabricmc.loader.api.FabricLoader;
 
 public final class NetMusicCache {
     private static final Set<String> DOWNLOADING = ConcurrentHashMap.newKeySet();
@@ -118,7 +118,8 @@ public final class NetMusicCache {
         Path tmp = target.resolveSibling(target.getFileName() + ".tmp");
         try {
             Files.createDirectories(target.getParent());
-            URLConnection connection = new URL(url).openConnection();
+            URI uri = URI.create(url);
+            URLConnection connection = uri.toURL().openConnection();
             connection.setConnectTimeout(8000);
             connection.setReadTimeout(15000);
             try (InputStream in = connection.getInputStream();
