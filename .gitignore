@@ -1,10 +1,11 @@
 # User-specific stuff
 .idea/
-
+.vscode/
 *.iml
 *.ipr
 *.iws
-
+# Relies on local
+libs/
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
@@ -30,6 +31,9 @@ atlassian-ide-plugin.xml
 *.zip
 *.tar.gz
 *.rar
+
+# Exception: Allow dependency jars in libs/
+!libs/*.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*

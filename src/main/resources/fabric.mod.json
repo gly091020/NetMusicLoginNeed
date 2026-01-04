@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": ["${mod_authors}"],
+  "license": "${mod_license}",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.gly091020.NetMusicLoginNeed.NetMusicLoginNeed"],
+    "client": ["com.gly091020.NetMusicLoginNeed.NetMusicLoginNeedClient"],
+    "modmenu": ["com.gly091020.NetMusicLoginNeed.config.ModMenuIntegration"]
+  },
+  "mixins": [
+    "net_music_login_need.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": "${minecraft_version}",
+    "fabric": "*",
+    "cloth-config": "*",
+    "modmenu": "*"
+  }
+}

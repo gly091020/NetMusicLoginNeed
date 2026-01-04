@@ -2,13 +2,16 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.gly091020.NetMusicLoginNeed.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "refmap": "net_music_login_need.refmap.json",
   "mixins": [
     "AlwaysCanPlayVIPMixin"
   ],
   "client": [
-    "GetMusicMixin"
+    "GetMusicMixin",
+    "MusicToClientMessageMixin",
+    "MusicPlayManagerMixin",
+    "WebApiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -7,14 +7,11 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
 
-@OnlyIn(Dist.CLIENT)
 public class ButtonEntry extends AbstractConfigListEntry<Object> {
     private final Component fieldName;
     private final Button button;
@@ -58,7 +55,6 @@ public class ButtonEntry extends AbstractConfigListEntry<Object> {
         super.render(graphics, index, y, x, entryWidth, entryHeight, mouseX, mouseY, isHovered, delta);
         button.setPosition(x, y);
         button.setWidth(entryWidth);
-        button.setHeight(entryHeight);
         button.render(graphics, mouseX, mouseY, delta);
     }
 
