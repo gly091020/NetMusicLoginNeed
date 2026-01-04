@@ -1,10 +1,11 @@
 # User-specific stuff
 .idea/
-
+.vscode/
 *.iml
 *.ipr
 *.iws
-
+# Relies on local
+libs/
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
