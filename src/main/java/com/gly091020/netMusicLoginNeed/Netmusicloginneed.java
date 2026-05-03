@@ -17,11 +17,10 @@ public class NetMusicLoginNeed {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static NetMusicLoginNeedConfig config;
 
-    @SuppressWarnings("all")
     public NetMusicLoginNeed(ModContainer container){
         AutoConfig.register(NetMusicLoginNeedConfig.class, Toml4jConfigSerializer::new);
         config = AutoConfig.getConfigHolder(NetMusicLoginNeedConfig.class).get();
-        if(FMLEnvironment.dist.isClient()){
+        if(FMLEnvironment.getDist().isClient()){
             container.registerExtensionPoint(IConfigScreenFactory.class, (mc, parent) ->
                     ConfigScreenGetter.get(parent));
         }

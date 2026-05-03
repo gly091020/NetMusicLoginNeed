@@ -16,6 +16,10 @@ repositories {
         url "https://cursemaven.com"
     }
     maven { url "https://maven.shedaniel.me/" }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 base {
@@ -168,4 +172,30 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+modrinth {
+    def envToken = System.getenv("MODRINTH_TOKEN")
+    if (envToken != null && !envToken.isEmpty()) {
+        token = envToken
+    } else {
+        // 如果没有 token，跳过 Modrinth 配置
+        throw new GradleException("错误: MODRINTH_TOKEN 环境变量未设置")
+    }
+    // 从环境变量获取 token，如果没有设置就报错
+    token = System.getenv("MODRINTH_TOKEN");
+
+    projectId = 'hoXcy0f7'
+    versionNumber = mod_version
+    versionName = mod_name + " " + mod_version
+    uploadFile = jar
+    gameVersions = [minecraft_version]
+    loaders = ['neoforge']
+    dependencies = [
+        new ModDependency("9s6osm5g", "required"),
+        new ModDependency("gKNuqaQq", "required")
+    ]
+    changelog = ""
+
+    versionType = "alpha"
 }

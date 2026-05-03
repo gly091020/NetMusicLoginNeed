@@ -54,7 +54,10 @@ public class NetMusicLoginNeedUtil {
             return null;
         }
         if(!NetMusicLoginNeed.config.cookie.isEmpty()){
-            data.put("cookie", NetMusicLoginNeed.config.cookie);
+            var cookie = NetMusicLoginNeed.config.cookie;
+            if(!cookie.contains(";appver=3.1.6;os=pc"))
+                cookie += ";appver=3.1.6;os=pc";
+            data.put("cookie", cookie);
         }
         try {
             var json = NetWorker.get(String.format(BASE_URL, id), data);
